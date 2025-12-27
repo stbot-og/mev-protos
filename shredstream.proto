@@ -43,6 +43,7 @@ service ShredstreamProxy {
 
 message SubscribeEntriesRequest {
   // tbd: we may want to add filters here
+  repeated string accounts = 1;
 }
 
 message Entry {
