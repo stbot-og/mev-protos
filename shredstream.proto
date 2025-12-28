@@ -38,7 +38,7 @@ message TraceShred {
 // Shredstream Proxy
 
 service ShredstreamProxy {
-  rpc SubscribeEntries(SubscribeEntriesRequest) returns (stream Entry);
+  rpc SubscribeEntries(SubscribeEntriesRequest) returns (stream SubscribeEntriesResponse);
 }
 
 message SubscribeEntriesRequest {
@@ -52,4 +52,13 @@ message Entry {
 
   // Serialized bytes of Vec<Entry>: https://docs.rs/solana-entry/latest/solana_entry/entry/struct.Entry.html
   bytes entries = 2;
+}
+
+message FilteredTransaction {
+  bytes tx = 1; // bincode VersionedTransaction
+}
+
+message SubscribeEntriesResponse {
+  uint64 slot = 1;
+  repeated FilteredTransaction transactions = 2;
 }
