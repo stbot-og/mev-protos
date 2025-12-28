@@ -54,24 +54,11 @@ message Entry {
   bytes entries = 2;
 }
 
-message FilteredTransaction {
-  bytes tx = 1; // bincode VersionedTransaction
-}
-
-message ParsedInstruction {
-  string program_id = 1;
-  repeated string accounts = 2;
-  bytes data = 3;
-}
-
-message ParsedTransaction {
-  string signature = 1;
-  repeated string account_keys = 2;
-  repeated ParsedInstruction instructions = 3;
-  uint64 recent_blockhash = 4;
+message Transaction {
+  bytes data = 1;
 }
 
 message SubscribeEntriesResponse {
   uint64 slot = 1;
-  repeated ParsedTransaction transactions = 2;
+  repeated Transaction transactions = 2;
 }
